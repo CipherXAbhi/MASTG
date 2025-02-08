@@ -5,7 +5,7 @@ The OWASP Mobile Application Security Testing Guide (MASTG) is a detailed manual
 
 ## Index
 1️⃣ General Concept
-+ [Mobile Application Taxonomy](./1_Introduction/Course_Overview.md)
++ [Mobile Application Taxonomy](https://github.com/CipherXAbhi/MASTG/tree/main/1_General_Concepts#mobile-application-taxonomy)
 + Prerequisites
 + Setup & Installation
 
