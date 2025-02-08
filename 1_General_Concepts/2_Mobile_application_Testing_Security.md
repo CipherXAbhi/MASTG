@@ -169,3 +169,72 @@ This focuses on how the app is built and secured, including:
 + 🖥️ The Operating System – What OS (Android/iOS) the app supports and whether security policies like Mobile Device Management (MDM) are in place.
 + 🌐 Network Security – Whether the app uses strong encryption (TLS, SHA-2) and certificate pinning to secure data in transit.
 + 🔗 Remote Services – What external services the app connects to and whether a breach in these services could compromise security.
+
+
+
+## Mapping the Application
+Once a tester understands the app and its environment, the next step is to map out its structure. This means identifying:
++ 📌 Entry points – Where users (or attackers) can interact with the app.
++ 📌 Features – What the app can do.
++ 📌 Data flow – How data moves within the app.
+
+How Mapping is Done
+🔍 Using Internal Documents (White-box/Grey-box testing)
+
++ If available, project documents (like architecture diagrams, code, or functional specs) help testers understand the app faster.
++ Static Application Security Testing (SAST) tools analyze the source code to find vulnerabilities like SQL Injection.
+
+⚙️ Using Automated Scanners (Black-box testing)
++ Dynamic Application Security Testing (DAST) tools scan the app in real-time to find security flaws.
++ These tools are fast, but they can’t find all vulnerabilities, so manual testing is still needed.
+
+🛡️ Threat Modeling
++ This is a process to identify risks early in development.
++ It helps testers understand potential attack points, important assets, and the severity of vulnerabilities.
++ OWASP provides guidelines for threat modeling, which are useful for mobile apps.
+
+
+## Exploitation
+After finding possible vulnerabilities in the app, the next step is to test if they can actually be exploited. Not all vulnerabilities are dangerous—some might look serious but cause little harm, while others seem minor but can be very dangerous.
+
+### How to Evaluate a Vulnerability?
+Testers check vulnerabilities based on these five key factors:
+
++ 1️⃣ Damage Potential – How much harm can this vulnerability cause?
++ 2️⃣ Reproducibility – Is the attack easy to repeat?
++ 3️⃣ Exploitability – How simple is it to execute the attack?
++ 4️⃣ Affected Users – How many people could be impacted?
++ 5️⃣ Discoverability – How easy is it for attackers to find this weakness?
+
+## Reporting
+After testing, the security tester must document everything clearly so the client understands the results. A well-structured pentest report should include:
+
++ 📌 Executive Summary – A short overview for non-technical stakeholders.
++ 📌 Scope & Context – What was tested (e.g., specific systems, apps, or networks).
++ 📌 Methods Used – The approach and tools used for testing.
++ 📌 Sources of Information – Any data provided by the client or discovered during testing.
++ 📌 Findings (Prioritized) – List of vulnerabilities ranked by risk level (e.g., using DREAD classification).
++ 📌 Detailed Findings – Explanation of each issue, how it was found, and its impact.
++ 📌 Fix Recommendations – Steps to fix or mitigate each vulnerability.
+
+---
+
+# #Security Testing during the Software Development Life Cycle (SDLC)
+Security Testing in the Software Development Life Cycle (SDLC)
+Software development has changed over time, moving from Waterfall (step-by-step approach) to Agile (faster and more flexible). Earlier, security was handled separately, but now it must be built into the development process (DevSecOps).
+
+Key Steps in Secure SDLC
++ 1️⃣ Risk Assessment – Identify security risks based on the app's data, functions, and regulatory requirements.
+
++ 2️⃣ Security Requirements – Define security rules early in development, including secure coding practices and compliance needs.
+
++ 3️⃣ Threat Modeling – Identify, analyze, and prioritize potential security threats before coding begins.
+
++ 4️⃣ Secure Development – Implement secure coding techniques, conduct code reviews, and use security tools like Static Analysis (SAST).
+
++ 5️⃣ Security Testing – Perform penetration testing (Pentests) and Dynamic Application Security Testing (DAST) to find vulnerabilities.
+
++ 6️⃣ Deployment & Monitoring – Ensure security controls remain effective when the app is released and in use.
+
++ 7️⃣ Decommissioning – Securely remove outdated software to prevent security risks.
+
