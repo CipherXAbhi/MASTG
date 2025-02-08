@@ -3,14 +3,14 @@
 When we say "mobile application" or "mobile app," we mean a computer program that runs on a mobile device. Right now, Android and iOS are the two biggest mobile operating systems, making up more than 99% of the market. More people now use the Internet on mobile devices than on desktops, making mobile apps the most common type of Internet-based software.
 
 
-In this guide, we use the word "app" to describe any software that runs on a mobile OS. Apps can either run directly on a mobile platform, work through a web browser, or use a mix of both. In this chapter, we will organize mobile apps into different categories and explore the differences between them.
+> In this guide, we use the word "app" to describe any software that runs on a mobile OS. Apps can either run directly on a mobile platform, work through a web browser, or use a mix of both. In this chapter, we will organize mobile apps into different categories and explore the differences between them.
 
 There are four categories of Mobile Application
 1. Native Apps
 2. Web Apps
 3. Hybrid Apps
 4. Progressive Web Apps
-
+---
 ## 1. Native Apps
 A native mobile app is an app built using a Software Development Kit (SDK) designed for a specific mobile operating system. If an app is called native, it means it was created using the standard programming languages for that OS—Swift or Objective-C for iOS and Java or Kotlin for Android.
 
@@ -33,7 +33,7 @@ Some frameworks allow developers to write a single codebase and compile it for b
 + React Native
 
 
-
+---
 
 ## 2. Web Apps
 ### What Are Web Apps?
@@ -46,7 +46,7 @@ Since web apps run inside a browser, they have limited access to a device’s fe
 Web apps are cheaper and easier to develop because they use a single codebase that works on all devices. They also allow developers to update apps instantly without waiting for app store approvals. For example, updating an HTML file can immediately apply changes to all users, while updating a native app requires manual updates through an app store.
 
 
-
+---
 
 ## 3. Hybrid Apps
 ### What Are Hybrid Apps?
@@ -72,7 +72,7 @@ Apache Cordova
 + Onsen UI
 + Sencha Touch
 
-
+---
 
 
 ## 4. Progressive Web Apps
