@@ -250,7 +250,7 @@ SMS-based one-time passwords (OTP) are widely used for two-factor authentication
 Transaction signing with Push Notifications & PKI is a secure way to approve important actions. The app creates a public and private key when the user registers. When a transaction happens, the server sends a push notification asking for approval. The user confirms it by unlocking their phone (PIN/Fingerprint), and the app signs the request with the private key. The server checks the signature with the public key to verify it's genuine before processing the transaction. This method is safer than OTPs and protects against hacking attempts like SIM swaps and phishing. 
 
 ---
-## Login Activity and Device Blocking (Simplified)
+## Login Activity and Device Blocking
 Apps should notify users about login activities and allow them to block unauthorized devices. Here are key points:
 
 1. Login Alerts – Users should receive a push notification when their account is accessed on a new device. They can block unauthorized devices directly from the notification.
