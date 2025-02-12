@@ -412,3 +412,260 @@ The Android OS manages app processes based on importance.
 ✔ **App lifecycle management** ensures smooth performance.  
 
 ---
+# 📦 App Bundles (AAB) & APKs
+
+Android apps are packaged as either APK (Android Package Kit) or AAB (Android App Bundle) files.
+
+## 📌 APK vs AAB
+
+| Format | Description |
+|--------|------------|
+| **APK (Android Package Kit)** | Standard installation package used for sideloading and direct installation on Android devices. |
+| **AAB (Android App Bundle)** | Contains all app resources but is processed by Google Play to generate optimized APKs dynamically for different device configurations. |
+
+## 🔧 Converting AAB to APK
+
+To extract APKs from an AAB file, use Google's [bundletool](https://developer.android.com/studio/command-line/bundletool).
+
+### 🛠 Extracting Unsigned APKs
+
+Run the following command to generate APKs from an AAB:
+
+```bash
+bundletool build-apks --bundle=/MyApp/my_app.aab --output=/MyApp/my_app.apks
+```
+
+This will create an `.apks` file, which is a ZIP archive containing APKs.
+
+### 🔑 Generating Signed APKs (For Testing or Deployment)
+
+If you need a signed APK, use the following command:
+
+```bash
+bundletool build-apks --bundle=/MyApp/my_app.aab --output=/MyApp/my_app.apks \
+  --ks=/MyApp/keystore.jks \
+  --ks-pass=file:/MyApp/keystore.pwd \
+  --ks-key-alias=MyKeyAlias \
+  --key-pass=file:/MyApp/key.pwd
+```
+
+## 📂 Extracting APKs from `.apks`
+
+Once the `.apks` file is generated, you can extract the APKs using:
+
+```bash
+unzip /MyApp/my_app.apks -d /MyApp/extracted_apks
+```
+
+This will extract multiple APKs optimized for different device configurations.
+
+To install the APK on a device, use:
+
+```bash
+adb install-multiple /MyApp/extracted_apks/*.apk
+```
+
+## 📝 Notes
+- The `.apks` file is a ZIP archive; you can rename it to `.zip` and extract it manually.
+- Use `adb` to install APKs directly on an Android device.
+- AABs are mainly used for distribution via Google Play, while APKs are used for direct installations.
+
+---
+
+# 📜 Android Manifest (AndroidManifest.xml)
+
+The Android Manifest is a binary XML file that defines an app’s structure, permissions, and metadata. It is located at the root of the APK.
+
+## 🔹 Key Components in the Manifest:
+✔️ **App Details**: Package name, version, SDK compatibility  
+✔️ **Permissions**: Declares required access, e.g., Internet, location  
+✔️ **Components**: Activities, Services, Content Providers, and Broadcast Receivers  
+✔️ **Metadata**: App icon, theme, and other settings  
+
+## 📝 Example Manifest File:
+
+```xml
+<manifest package="com.owasp.myapplication" android:versionCode="0.1">
+    
+    <!-- SDK Compatibility -->
+    <uses-sdk android:minSdkVersion="12" android:targetSdkVersion="22" android:maxSdkVersion="25"/>
+
+    <!-- Required Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Content Provider -->
+    <provider android:name="com.owasp.myapplication.MyProvider" android:exported="false"/>
+
+    <!-- Broadcast Receiver -->
+    <receiver android:name=".MyReceiver">
+        <intent-filter>
+            <action android:name="com.owasp.myapplication.myaction"/>
+        </intent-filter>
+    </receiver>
+
+    <!-- Application Metadata -->
+    <application android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/Theme.Material.Light">
+        
+        <!-- Main Activity -->
+        <activity android:name="com.owasp.myapplication.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+```
+
+## 📌 Notes
+- The AndroidManifest.xml file is essential for defining app behavior and permissions.
+- Every app must have a manifest file located in the root directory.
+- Always declare only the necessary permissions to minimize security risks.
+- The `<application>` tag contains app-wide configurations such as theme, icon, and label.
+
+---
+
+# 📱 Android App Components
+
+Android apps consist of multiple key components that interact with each other and the system. These include:
+
+1️⃣ **Activities** – UI screens for user interaction  
+2️⃣ **Fragments** – Reusable UI components inside activities  
+3️⃣ **Intents** – Messaging system for components  
+4️⃣ **Broadcast Receivers** – Handle system-wide events  
+5️⃣ **Content Providers** – Manage app data and share it with other apps  
+6️⃣ **Services** – Perform background tasks without a UI  
+
+## 🖥 Activities
+Activities represent individual screens in an app. Each activity must be declared in the `AndroidManifest.xml` file.
+
+### 🔹 Lifecycle Methods:
+- `onCreate()` – Initialize UI components  
+- `onStart()`, `onResume()` – Prepare activity for user interaction  
+- `onPause()`, `onStop()` – Handle background transitions  
+- `onDestroy()` – Cleanup resources  
+
+### 📝 Manifest Declaration:
+```xml
+<activity android:name="ActivityName">
+</activity>
+```
+
+## 🧩 Fragments
+Fragments are reusable UI components that exist inside activities. They help adapt UI for different screen sizes.
+
+### 📝 Fragment Example (Java & Kotlin)
+#### Java:
+```java
+public class MyFragment extends Fragment { ... }
+```
+#### Kotlin:
+```kotlin
+class MyFragment : Fragment() { ... }
+```
+Fragments don’t need to be declared in the manifest but are managed using `FragmentManager`.
+
+#### Fragment Management:
+##### Java:
+```java
+FragmentManager fm = getFragmentManager();
+```
+##### Kotlin:
+```kotlin
+var fm = fragmentManager
+```
+
+## 📦 Content Providers
+Android uses SQLite for data storage, and content providers allow apps to share data securely.
+
+✔ Uses URI-based access (`content://`)  
+✔ Provides Create, Read, Update, Delete (CRUD) operations  
+✔ Must be declared in `AndroidManifest.xml` to be accessible by other apps  
+
+## ⚙️ Services
+Services run background tasks without a user interface. They have higher priority than inactive apps but lower than active ones.
+
+✔ Ideal for background tasks like data syncing, notifications  
+✔ Run in the main thread unless explicitly handled  
+
+---
+
+# 🔄 Inter-Process Communication (IPC) in Android
+
+Android uses **Binder** for IPC instead of default Linux IPC mechanisms. Binder allows apps and system services to communicate securely.
+
+## 🔑 Key Components of Binder
+- **Binder Driver** – A kernel-level driver.
+- **Binder Protocol** – A low-level communication protocol.
+- **IBinder Interface** – Defines behavior for Binder objects.
+- **Binder Object** – Implements the IBinder interface.
+- **Binder Service** – Provides services (e.g., location, sensors).
+- **Binder Client** – Uses a Binder service.
+
+## ⚙️ How Binder Works
+1. Apps use proxy objects to call IPC methods.
+2. These methods send data via **parcels** to the Binder server (`/dev/binder`).
+3. The server processes the request and responds as if it were a normal function call.
+
+## 🛠 ServiceManager
+The **ServiceManager** manages system services (e.g., phone, SMS). Apps can:
+- Register services using `addService`.
+- Retrieve services using `getService`.
+
+### 🔍 List system services using:
+```bash
+adb shell service list
+```
+
+# 📡 Intents in Android
+Intents are used for communication between app components. They support:
+
+- **Starting an Activity** – Opens a new screen.
+- **Starting a Service** – Runs background operations.
+- **Sending a Broadcast** – Sends system-wide messages.
+
+## 🔹 Types of Intents
+### **Explicit Intents** – Targets a specific component.
+```java
+Intent intent = new Intent(this, MyActivity.class);
+```
+### **Implicit Intents** – Requests an action from any app that can handle it.
+```java
+Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.owasp.org"));
+```
+
+# 📑 Intent Filters
+Intent filters are declared in `AndroidManifest.xml` and allow other apps to interact with an activity/service.
+
+### 📝 Example:
+```xml
+<receiver android:name=".MyReceiver">
+    <intent-filter>
+        <action android:name="com.example.MY_ACTION" />
+    </intent-filter>
+</receiver>
+```
+
+# 📡 Broadcast Receivers
+Broadcast receivers are used to receive system and app events.
+
+## 🔹 Ways to Register a Broadcast Receiver
+### **In Manifest (Static Registration)** – Runs automatically when an event occurs.
+### **In Code (Dynamic Registration)** – Runs only when the app is active.
+```java
+BroadcastReceiver myReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Log.d("TAG", "Intent received");
+    }
+};
+IntentFilter filter = new IntentFilter("com.example.MY_ACTION");
+registerReceiver(myReceiver, filter);
+```
+
+# 🔒 Security Considerations
+- Use **LocalBroadcastManager** to restrict broadcasts within the app.
+- Android limits implicit broadcasts for background efficiency.
+
+
+---
+
