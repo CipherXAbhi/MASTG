@@ -12,6 +12,7 @@ The OWASP Mobile Application Security Testing Guide (MASTG) is a detailed manual
 + [Mobile App Network Communication](https://github.com/CipherXAbhi/MASTG/blob/main/1_General_Concepts/5_Mobile_App_Network_Communication.md#mobile-app-network-communication)
 + [Mobile App Cryptography](https://github.com/CipherXAbhi/MASTG/blob/main/1_General_Concepts/6_Mobile_App_Cryptography.md#mobile-app-cryptography-simplified)
 + [Mobile App Code Quality](https://github.com/CipherXAbhi/MASTG/blob/main/1_General_Concepts/7_Mobile_App_Code_Quality.md#mobile-app-code-quality)
++ [Mobile App User Privacy Protection](https://github.com/CipherXAbhi/MASTG/blob/main/1_General_Concepts/8_Mobile_App_User_Privacy_Protection.md#mobile-app-user-privacy-protection)
 
 2️⃣ Fundamentals
 + Basic Concepts
