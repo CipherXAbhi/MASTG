@@ -25,7 +25,6 @@ This chapter introduces the Android platform from an architecture point of view.
 ### 3. Android Runtime (ART) & Native Libraries
 + Android Runtime (ART): Executes apps using Ahead-of-Time (AOT) compilation.
 + Native Libraries: Includes C/C++ libraries such as OpenGL (graphics), SQLite (database), WebKit (browser), and Media Frameworks.
-  This is a well-detailed explanation of the Android Runtime Environment and Sandboxing. It highlights key concepts like:
 
 1. Dalvik and ART
   + Older Android versions (pre-Android 5.0) used Dalvik Virtual Machine (DVM) with Just-In-Time (JIT) compilation.
