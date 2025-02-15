@@ -16,7 +16,7 @@ The OWASP Mobile Application Security Testing Guide (MASTG) is a detailed manual
 
 2️⃣ Android Security Testing
 + [Android Platform Overview](https://github.com/CipherXAbhi/MASTG/blob/main/2_Android_Security_Testing/1_Android_Platform_Overview.md#android-platform-overview)
-+ []()
++ [Android Security Testing](https://github.com/CipherXAbhi/MASTG/blob/main/2_Android_Security_Testing/2_Android_Security_Testing.md#android-security-testing-setup)
 + []()
 
 3️⃣ Practical Labs
